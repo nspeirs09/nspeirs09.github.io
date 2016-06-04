@@ -9,6 +9,17 @@
 
   <!-- Bootstrap -->
   <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- Angular website directory link -->
+  <script src="https://code.angularjs.org/1.5.6/angular.js"></script>
+  <!-- Angular app file -->
+  <script src="js/app.js"></script>
+  <!-- Angular controller file -->
+  <script src="js/quotesCtrl.js"></script>
+  <!-- Angular service file -->
+  <script src="js/quotesService.js"></script>
 </head>
 <body ng-controller="quotesCtrl">
   {{test}}
@@ -19,14 +30,14 @@
       <h1>This is a Quote Book application</h1>
     </div>
     <!-- Quote Form -->
-    <form>
+    <form ng-submit="createQuote()">
       <div class="form-group">
         <label>Quote</label>
-        <input type="text" class="form-control" required>
+        <input type="text" class="form-control" ng-model="newQuote.text"required>
       </div>
       <div class="form-group">
         <label>Author</label>
-        <input type="text" class="form-control" required>
+        <input type="text" class="form-control" ng-model="newQuote.author"required>
       </div>
       <input type="submit" class="btn btn-warning btn-lg" value="Add Quote">
     </form>
@@ -50,13 +61,14 @@
        </div>
 
        <!-- Quotes List -->
-       <div class="panel panel-info" rg-repeat="quote in quotes" | filter: "query">
+       <div class="panel panel-info" ng-repeat="quote in quotes | filter: query">
          <div class="panel-heading">
            <h3 class="panel-title pull-left">{{quote.author}}</h3>
-           <button class="pull-right close">x</button>
+           <button class="pull-right close" ng-click="deleteQuote($index)">x</button>
            <div class="clearfix"></div>
          </div>
          <div class="panel-body">{{quote.text}}</div>
+
        </div>
 
 
@@ -67,16 +79,6 @@
 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <!-- Angular website directory link -->
-  <script src="https://code.angularjs.org/1.5.6/angular.js"></script>
-  <!-- Angular app file -->
-  <script src="js/app.js"></script>
-  <!-- Angular controller file -->
-  <script src="js/quotesCtrl.js"></script>
-  <!-- Angular service file -->
-  <script src="js/quotesService.js"></script>
+
 </body>
 </html>
