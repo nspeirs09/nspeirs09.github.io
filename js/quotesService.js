@@ -15,6 +15,7 @@ angular.module('quotesApp')
 
       this.readQuotes = function(){
           console.log("in service function");
+
         return quotes;
       };
 
